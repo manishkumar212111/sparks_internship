@@ -122,7 +122,7 @@ def search():
 
         con = sqlite3.connect('database.db')
         cur = con.cursor()
-        cur.execute('select *from users where email=? or name=?" ',[search,search])
+        cur.execute('select *from users where email=? or name=?',[search,search])
         a=cur.fetchall()
         if a is None:
             return render_template('main.html',message=a)
