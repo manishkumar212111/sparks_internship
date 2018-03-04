@@ -29,7 +29,7 @@ def credit_transfer():
     cur.execute("select email from users")
     a = cur.fetchall()
 
-    render_template('credit_transfer.html',result=a)
+    return render_template('credit_transfer.html',result=a)
 
 
 
