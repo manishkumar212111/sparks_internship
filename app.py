@@ -83,15 +83,15 @@ def credit_transfer_submit():
 
         f_credit = f_credit - int(amount)
         t_credit = t_credit + int(amount)
-        cur.execute("UPDATE users SET credit=? WHERE email=?", (f_credit, fro))
+        cur.execute("UPDATE users SET credit=? WHERE email=?", (str(f_credit), fro))
         con.commit()
-        cur.execute("UPDATE users SET credit=? WHERE email=?", (t_credit, to))
+        cur.execute("UPDATE users SET credit=? WHERE email=?", (str(t_credit), to))
         con.commit()
         now = datetime.datetime.now()
         date_string = now.strftime('%Y-%m-%d')
         cur.execute("insert into credit values(?,?,?,?)", (fro, to, int(amount), date_string))
         con.commit()
-        return str(f_credit)+" "+str(t_credit)+" "+fro+" "+to
+
         return redirect(url_for('credit_transfer_submit'))
     cur.execute("select email from users")
 
