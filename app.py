@@ -3,8 +3,7 @@ import sqlite3
 import datetime
 
 app = Flask(__name__)
-con = sqlite3.connect('database.db')
-cur = con.cursor()
+
 
 
 @app.route('/')
@@ -24,6 +23,8 @@ def credit():
 
 @app.route('/view_all_user')
 def view_all_user():
+    con = sqlite3.connect('database.db')
+    cur = con.cursor()
     cur.execute('select * from users')
     a = cur.fetchall()
     return render_template('view_all_user.html', result=a)
@@ -31,6 +32,8 @@ def view_all_user():
 
 @app.route('/credit_transfer')
 def credit_transfer():
+    con = sqlite3.connect('database.db')
+    cur = con.cursor()
     cur.execute("select email from users")
     a = cur.fetchall()
 
@@ -83,9 +86,9 @@ def credit_transfer_submit():
 
         f_credit = f_credit - int(amount)
         t_credit = t_credit + int(amount)
-        cur.execute("UPDATE users SET credit=? WHERE email=?", (str(f_credit), fro))
+        cur.execute("UPDATE users SET credit=? WHERE email=?", (int(f_credit), fro))
         con.commit()
-        cur.execute("UPDATE users SET credit=? WHERE email=?", (str(t_credit), to))
+        cur.execute("UPDATE users SET credit=? WHERE email=?", (int(t_credit), to))
         con.commit()
         now = datetime.datetime.now()
         date_string = now.strftime('%Y-%m-%d')
