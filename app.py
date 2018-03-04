@@ -32,12 +32,18 @@ def credit_transfer():
 
     return render_template('credit_transfer.html',result=a)
 
-@app.route('/credit_transfer_submit', methods=['POST','GET'])
+@app.route('/credit_transfer_submit',methods=['POST','GET'])
 def credit_transfer_submit():
     if request.method == 'POST':
         fro= request.form['from']
         to = request.form['to']
         amount = request.form['amount']
+        if fro == to:
+            cur.execute("select email from users")
+            a = cur.fetchall()
+            return render_template('credit_transfer.html', result=a, fro=fro, to=to, amount=amount,
+                                   message="Sender and reciever must be different")
+
         if int(amount)>10000:
             cur.execute("select email from users")
             a = cur.fetchall()
