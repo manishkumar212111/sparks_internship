@@ -125,9 +125,10 @@ def search():
         cur.execute('select *from users where email=? or name=?',[search,search])
         a=cur.fetchall()
         if a is None:
-            return render_template('main.html',message=a)
+
+            return render_template('main.html', notfound="Norecord found")
         else:
-            return render_template('main.html', notfound="Norecprd found")
+            return render_template('main.html', message=a)
 
     return render_template('main.html',message="error")
 
