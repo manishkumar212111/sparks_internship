@@ -35,7 +35,7 @@
 <form class="form-inline" width="100%" action="https://manish7297.herokuapp.com/credit_transfer_submit" method="POST">
                 <div class="form-group">
                     <label>from</label>
-                    <select class="form-control input-sm" name={{fro}} default="fro" required>
+                    <select class="form-control input-sm" name="from" default="fro" required>
                         {% for i in result %}
                         <option value={{i[0]}}>{{i[0]}}</option>
                         {% endfor%}
@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-group" >
                     <label>To</label>
-                    <select class="form-control input-sm" name={{to}} default="to" required>
+                    <select class="form-control input-sm" name="to" default={{to}} required>
 
                       {% for i in result %}
                         <option value={{i[0]}}>{{i[0]}}</option>

@@ -96,10 +96,10 @@
       <file leaf-file-name="credit_transfer.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/credit_transfer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="39" column="64" lean-forward="true" selection-start-line="39" selection-start-column="64" selection-end-line="39" selection-end-column="64" />
+            <state relative-caret-position="320">
+              <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
               <folding>
-                <element signature="e#2566#2572#0" expanded="true" />
+                <element signature="e#2565#2571#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -961,10 +961,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/credit_transfer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="39" column="64" lean-forward="true" selection-start-line="39" selection-start-column="64" selection-end-line="39" selection-end-column="64" />
+        <state relative-caret-position="320">
+          <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding>
-            <element signature="e#2566#2572#0" expanded="true" />
+            <element signature="e#2565#2571#0" expanded="true" />
           </folding>
         </state>
       </provider>
