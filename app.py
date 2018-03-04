@@ -17,6 +17,7 @@ def add_database(fro,to,f_credit,t_credit,amount):
     date_string = now.strftime('%Y-%m-%d')
     cur.execute("insert into credit values(?,?,?,?)", (fro, to, int(amount), date_string))
     con.commit()
+    con.close()
     return True
 
 @app.route('/')
@@ -99,6 +100,7 @@ def credit_transfer_submit():
 
         f_credit = f_credit - int(amount)
         t_credit = t_credit + int(amount)
+        con.commit()
         add_database(fro,to,f_credit,t_credit,amount)
         return redirect(url_for('credit_transfer_submit'))
     cur.execute("select email from users")
