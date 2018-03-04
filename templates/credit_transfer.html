@@ -37,7 +37,7 @@
                     <label>from</label>
                     <select class="form-control input-sm" name="from">
                         {% for i in result %}
-                        <option value=i[0]>i[0]</option>
+                        <option value={{i[0]}}>{{i[0]}}</option>
                         {% endfor%}
                   </select>
 
@@ -47,7 +47,7 @@
                     <select class="form-control input-sm" data-bind="options: Partners, optionsText: 'Name', optionsValue: 'Id', value: FilterPartner">
 
                       {% for i in result %}
-                        <option value=i[0]>i[0]</option>
+                        <option value={{i}}>{{i}}</option>
                         {% endfor%}
                   </select>
                 </div>
