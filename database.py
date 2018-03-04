@@ -5,13 +5,11 @@ conn = sqlite3.connect('database.db')
 print "Opened database successfully";
 cur = conn.cursor()
 now = datetime.datetime.now()
+f_credit=10
+fro="Manish@gmail.com"
 date_string = now.strftime('%Y-%m-%d')
-fro="adkhfjsfh"
-to="sdfsfjf"
-amount=50
-#cur.execute('insert into credit values(?,?,?,?)',[fro, to, amount, date_string])
-#conn.commit()
-
-cur.execute('select credit from users where email="raja@gmail.com"')
-print cur.fetchall()[0][0]
+cur.execute("UPDATE users SET credit=? WHERE email=?", [f_credit, fro])
+conn.commit()
+cur.execute('select *from users')
+print cur.fetchall()
 conn.close()

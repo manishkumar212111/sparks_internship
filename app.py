@@ -67,7 +67,7 @@ def credit_transfer_submit():
             a1 = cur.fetchall()
             return render_template('credit_transfer.html', result=a1, fro=fro, to=to, amount=amount,
                                    message="insufficient balance")
-        f_credit = a[0][0]
+        f_credit = int(a[0][0])
         cur.execute("select credit from users where email=?", [to])
         a = cur.fetchall()
         if a is None:
@@ -76,7 +76,7 @@ def credit_transfer_submit():
             return render_template('credit_transfer.html', result=a1, fro=fro, to=to, amount=amount,
                                message="insufficient balance")
 
-        t_credit = a[0][0]
+        t_credit = int(a[0][0])
 
         f_credit = f_credit - int(amount)
         t_credit = t_credit + int(amount)
@@ -86,7 +86,7 @@ def credit_transfer_submit():
         con.commit()
         now = datetime.datetime.now()
         date_string = now.strftime('%Y-%m-%d')
-        cur.execute("insert into credit values(?,?,?,?)", [fro, to, amount, date_string])
+        cur.execute("insert into credit values(?,?,?,?)", [fro, to, int(amount), date_string])
         con.commit()
         return redirect(url_for('credit_transfer_submit'))
     cur.execute("select email from users")
