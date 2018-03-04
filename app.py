@@ -115,5 +115,22 @@ def credit_transfer_submit():
     return render_template('credit_transfer.html', result=a, message="Successfully Transferred credit")
 
 
+@app.route('/search',methods=['POST','GET'])
+def search():
+    if request.method=='POST':
+        search=request.form['search']
+
+        con = sqlite3.connect('database.db')
+        cur = con.cursor()
+        cur.execute('select *from users where email=? or name=?" ',[search,search])
+        a=cur.fetchall()
+        if a is None:
+            return render_template('main.html',message=a)
+        else:
+            return render_template('main.html', notfound="Norecprd found")
+
+    return render_template('main.html',message="error")
+
+
 if __name__ == "__main__":
     app.run()
