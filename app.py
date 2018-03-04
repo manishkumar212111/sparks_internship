@@ -70,6 +70,12 @@ def credit_transfer_submit():
         f_credit = a[0][0]
         cur.execute("select credit from users where email=?", [to])
         a = cur.fetchall()
+        if a is None:
+            cur.execute("select email from users")
+            a1 = cur.fetchall()
+            return render_template('credit_transfer.html', result=a1, fro=fro, to=to, amount=amount,
+                               message="insufficient balance")
+
         t_credit = a[0][0]
 
         f_credit = f_credit - int(amount)

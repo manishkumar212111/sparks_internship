@@ -9,9 +9,9 @@ date_string = now.strftime('%Y-%m-%d')
 fro="adkhfjsfh"
 to="sdfsfjf"
 amount=50
-cur.execute('insert into credit values(?,?,?,?)',[fro, to, amount, date_string])
-conn.commit()
+#cur.execute('insert into credit values(?,?,?,?)',[fro, to, amount, date_string])
+#conn.commit()
 
-cur.execute('select *from credit')
-print cur.fetchall()
+cur.execute('select credit from users where email="raja@gmail.com"')
+print cur.fetchall()[0][0]
 conn.close()
