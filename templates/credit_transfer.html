@@ -8,15 +8,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<script>
-    table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-th, td {
-    padding: 15px;
-}
-</script>
 <body>
 
 <nav class="navbar navbar-inverse">
@@ -41,23 +32,36 @@ th, td {
 
 <div class="container">
 
-    <table style="width:80%" >
-         <tr bgcolor="yellow">
-            <th>Name</th><th>Email</th><td>Action</td>
-        </tr>
-        {% for i in result  %}
+<form class="form-inline" width="100%">
+                <div class="form-group">
+                    <label>from</label>
+                    <select class="form-control input-sm" name="from">
+                        {% for i in result %}
+                        <option value=i[0]>i[0]</option>
+                        {% endfor%}
+                  </select>
+                </div>
+                <div class="form-group" >
+                    <label>To</label>
+                    <select class="form-control input-sm" data-bind="options: Partners, optionsText: 'Name', optionsValue: 'Id', value: FilterPartner">
+
+                      {% for i in result %}
+                        <option value=i[0]>i[0]</option>
+                        {% endfor%}
+                  </select>
+                </div>
+                <div class="form-group">
+                    <label>Credit</label>
+                    <input class="form-control input-sm @cell" placeholder="amount" type="text">
+                </div>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-info btn-sm"><i class="fa fa-search"></i>&nbsp;Submit</button>
+                </div>
+            </form>
 
 
-        <tr>
-            <td>{{i[0]}}</td><td>{{i[1]}}</td><td>{{i[2]}}</td>
 
-           <tr > <td>&nbsp</td><td>&nbsp</td>
-            <td>&nbsp</td>
-
-        </tr>
-        {% endfor %}
-
-    </table>
 
 
 </div>

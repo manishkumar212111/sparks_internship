@@ -22,6 +22,15 @@ def view_all_user():
     a = cur.fetchall()
     return render_template('view_all_user.html',result=a)
 
+app.route('/credit_transfer')
+def credit_transfer():
+    con=sqlite3.connect('database.db')
+    cur = con.cursor()
+    a = cur.execute("select email from users")
+    a = cur.fetchall()
+
+    render_template('credit_transfer.html',result=a)
+
 
 
 
