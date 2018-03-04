@@ -19,7 +19,7 @@ def add_database(fro,to,f_credit,t_credit,amount):
         con.commit()
         con.close()
 
-        return True
+        return "Success"
     except:
         con.rollback()
         return "error in insert operation"
