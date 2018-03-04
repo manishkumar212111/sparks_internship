@@ -5,6 +5,6 @@ conn = sqlite3.connect('database.db')
 print "Opened database successfully";
 cur = conn.cursor()
 
-cur.execute('select *from credit')
+cur.execute('select *from users')
 print cur.fetchall()
 conn.close()

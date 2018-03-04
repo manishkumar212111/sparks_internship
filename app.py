@@ -9,13 +9,13 @@ def add_database(fro,to,f_credit,t_credit,amount):
     con = sqlite3.connect('database.db')
     cur = con.cursor()
 
-    cur.execute("UPDATE users SET credit=? WHERE email=?", (int(f_credit), fro))
+    cur.execute("UPDATE users SET credit=? WHERE email=?", [int(f_credit), fro])
     con.commit()
-    cur.execute("UPDATE users SET credit=? WHERE email=?", (int(t_credit), to))
+    cur.execute("UPDATE users SET credit=? WHERE email=?", [int(t_credit), to])
     con.commit()
     now = datetime.datetime.now()
     date_string = now.strftime('%Y-%m-%d')
-    cur.execute("insert into credit values(?,?,?,?)", (fro, to, int(amount), date_string))
+    cur.execute("insert into credit values(?,?,?,?)", [fro, to, int(amount), date_string])
     con.commit()
     con.close()
     return True
@@ -41,6 +41,7 @@ def view_all_user():
     cur = con.cursor()
     cur.execute('select * from users')
     a = cur.fetchall()
+    con.close()
     return render_template('view_all_user.html', result=a)
 
 
@@ -50,7 +51,7 @@ def credit_transfer():
     cur = con.cursor()
     cur.execute("select email from users")
     a = cur.fetchall()
-
+    con.close()
     return render_template('credit_transfer.html', result=a)
 
 
