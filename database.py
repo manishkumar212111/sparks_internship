@@ -10,6 +10,6 @@ fro="Manish@gmail.com"
 date_string = now.strftime('%Y-%m-%d')
 cur.execute("UPDATE users SET credit=? WHERE email=?", [f_credit, fro])
 conn.commit()
-cur.execute('select *from users')
+cur.execute('select *from credit')
 print cur.fetchall()
 conn.close()

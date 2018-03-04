@@ -39,6 +39,9 @@ def credit_transfer():
 
 @app.route('/credit_transfer_submit', methods=['POST', 'GET'])
 def credit_transfer_submit():
+    con = sqlite3.connect('database.db')
+    cur = con.cursor()
+
     if request.method == 'POST':
         fro = request.form['from']
         to = request.form['to']
@@ -90,6 +93,7 @@ def credit_transfer_submit():
         con.commit()
         return redirect(url_for('credit_transfer_submit'))
     cur.execute("select email from users")
+    con.close()
     a = cur.fetchall()
 
     return render_template('credit_transfer.html', result=a, message="Successfully Transferred credit")
