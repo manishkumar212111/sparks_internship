@@ -91,7 +91,7 @@ def credit_transfer_submit():
         date_string = now.strftime('%Y-%m-%d')
         cur.execute("insert into credit values(?,?,?,?)", (fro, to, int(amount), date_string))
         con.commit()
-        return f_credit+""+t_credit+""+fro+to
+        return str(f_credit)+" "+str(t_credit)+" "+fro+" "+to
         return redirect(url_for('credit_transfer_submit'))
     cur.execute("select email from users")
 
