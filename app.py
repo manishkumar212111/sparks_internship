@@ -39,7 +39,7 @@ def credit_transfer():
 
 @app.route('/credit_transfer_submit', methods=['POST', 'GET'])
 def credit_transfer_submit():
-    if request.method:
+    if request.method == 'POST':
         fro = request.form['from']
         to = request.form['to']
         amount = request.form['amount']
@@ -59,13 +59,13 @@ def credit_transfer_submit():
         a = cur.fetchall()
         if a is None:
             cur.execute("select email from users")
-            a = cur.fetchall()
-            return render_template('credit_transfer.html', result=a, fro=fro, to=to, amount=amount,
+            a1 = cur.fetchall()
+            return render_template('credit_transfer.html', result=a1, fro=fro, to=to, amount=amount,
                                    message="Unknown error")
         if int(a[0][0]) < int(amount):
             cur.execute("select email from users")
-            a = cur.fetchall()
-            return render_template('credit_transfer.html', result=a, fro=fro, to=to, amount=amount,
+            a1 = cur.fetchall()
+            return render_template('credit_transfer.html', result=a1, fro=fro, to=to, amount=amount,
                                    message="insufficient balance")
         f_credit = a[0][0]
         cur.execute("select credit from users where email=?", [to])
@@ -74,9 +74,9 @@ def credit_transfer_submit():
 
         f_credit = f_credit - int(amount)
         t_credit = t_credit + int(amount)
-        cur.execute("UPDATE users SET credit=? WHERE email=?", [f_credit], [fro])
-        cur.execute("UPDATE users SET credit=? WHERE email=?", [t_credit], [to])
-        cur.execute("insert into credit values(?,?,?)", [fro], [to], amount, datetime.date.today())
+        cur.execute("UPDATE users SET credit=? WHERE email=?", [f_credit, fro])
+        cur.execute("UPDATE users SET credit=? WHERE email=?", [t_credit, to])
+        cur.execute("insert into credit values(?,?,?,?)", [fro, to, amount, datetime.date.today()])
         return reduce(url_for('credit_transfer_submit'))
     cur.execute("select email from users")
     a = cur.fetchall()

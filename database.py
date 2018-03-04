@@ -11,7 +11,7 @@ conn = sqlite3.connect('database.db')
     '''
 email="manish.kumar212111@gmail.com"
 cur = conn.cursor()
-a=cur.execute("show table")
+a=cur.execute("select *from users")
 a=cur.fetchall()
 print a
 conn.close()
