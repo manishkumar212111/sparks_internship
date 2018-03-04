@@ -35,7 +35,7 @@
 <form class="form-inline" width="100%" action="https://manish7297.herokuapp.com/credit_transfer_submit" method="post">
                 <div class="form-group">
                     <label>from</label>
-                    <select class="form-control input-sm" name={{fro}] default="fro" required>
+                    <select class="form-control input-sm" name={{fro}} default="fro" required>
                         {% for i in result %}
                         <option value={{i[0]}}>{{i[0]}}</option>
                         {% endfor%}
@@ -62,6 +62,7 @@
             </form>
     {% if message %}
     <p><strong>{{message}}</strong></p>
+    {%endif%}
 
 
 
