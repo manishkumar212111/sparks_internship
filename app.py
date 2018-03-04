@@ -93,9 +93,9 @@ def credit_transfer_submit():
         con.commit()
         return redirect(url_for('credit_transfer_submit'))
     cur.execute("select email from users")
-    con.close()
-    a = cur.fetchall()
 
+    a = cur.fetchall()
+    con.close()
     return render_template('credit_transfer.html', result=a, message="Successfully Transferred credit")
 
 
