@@ -9,8 +9,9 @@ conn = sqlite3.connect('database.db')
     msg = "Record successfully added"
     print msg
     '''
+email="manish.kumar212111@gmail.com"
 cur = conn.cursor()
-a=cur.execute("select * from users")
+a=cur.execute("show table")
 a=cur.fetchall()
-print a[0][2]
+print a
 conn.close()

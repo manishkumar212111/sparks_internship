@@ -32,10 +32,10 @@
 
 <div class="container">
 
-<form class="form-inline" width="100%">
+<form class="form-inline" width="100%" action="https://manish7297.herokuapp.com/credit_transfer_submit" method="post">
                 <div class="form-group">
                     <label>from</label>
-                    <select class="form-control input-sm" name="from">
+                    <select class="form-control input-sm" name={{fro}] default="fro" required>
                         {% for i in result %}
                         <option value={{i[0]}}>{{i[0]}}</option>
                         {% endfor%}
@@ -44,23 +44,24 @@
                 </div>
                 <div class="form-group" >
                     <label>To</label>
-                    <select class="form-control input-sm" data-bind="options: Partners, optionsText: 'Name', optionsValue: 'Id', value: FilterPartner">
+                    <select class="form-control input-sm" name={{to}} default="to" required>
 
                       {% for i in result %}
-                        <option value={{i}}>{{i}}</option>
+                        <option value={{i[0]}}>{{i[0]}}</option>
                         {% endfor%}
                   </select>
                 </div>
                 <div class="form-group">
                     <label>Credit</label>
-                    <input class="form-control input-sm @cell" placeholder="amount" type="text">
+                    <input class="form-control input-sm @cell" placeholder="amount" default={{amount}} type="number" name="amount" required max="10000">
                 </div>
 
                 <div class="form-group">
                   <button type="submit" class="btn btn-info btn-sm"><i class="fa fa-search"></i>&nbsp;Submit</button>
                 </div>
             </form>
-
+    {% if message %}
+    <p><strong>{{message}}</strong></p>
 
 
 
