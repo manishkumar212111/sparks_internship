@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for
+from flask import redirect,Flask, render_template, request, url_for
 import sqlite3
 import datetime
 
@@ -77,7 +77,7 @@ def credit_transfer_submit():
         cur.execute("UPDATE users SET credit=? WHERE email=?", [f_credit, fro])
         cur.execute("UPDATE users SET credit=? WHERE email=?", [t_credit, to])
         cur.execute("insert into credit values(?,?,?,?)", [fro, to, amount, datetime.date.today()])
-        return reduce(url_for('credit_transfer_submit'))
+        return redirect(url_for('credit_transfer_submit'))
     cur.execute("select email from users")
     a = cur.fetchall()
 
